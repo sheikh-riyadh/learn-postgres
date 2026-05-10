@@ -43,3 +43,30 @@ ALTER TABLE employee
     ALTER COLUMN designation SET NOT NULL;
 
 
+
+SELECT * FROM employee;
+
+
+-- HOW WE CAN DELETE ALL THE TABLE DATA
+TRUNCATE TABLE employee;
+
+
+
+-- HOW WE CAN DELETE DATABASE
+DROP TABLE employee
+
+DROP TABLE student;
+
+
+-- HOW WE CAN ADD CONSTRAINT INTO EXISTING TABLE
+ALTER TABLE employee
+ADD CONSTRAINT unique_employee_id_and_designation
+UNIQUE (employee_id, designation);
+
+
+
+-- HOW WE CAN DROP THE CONSTRAINT
+ALTER TABLE employee
+    DROP constraint unique_employee_id_and_designation;
+
+
