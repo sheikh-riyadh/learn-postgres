@@ -79,6 +79,21 @@ SELECT email as user_email FROM students;
 SELECT * FROM students
     WHERE country = 'USA';
 
+-- HERE WE CAN SEE ALL THE DATA EXCEPT "usa" COUNTRY 
+SELECT * FROM students
+    WHERE country != 'USA'
+
+
+-- SAME WITH HERE WE CAN SEE ALL THE DATA EXCEPT "usa" COUNTRY 
+SELECT * FROM students
+    WHERE country <> 'USA'
+
+
+
+--AlSO HERE WE CAN SEE ALL THE DATA EXCEPT "usa" COUNTRY `!=, <>, NOT` THESE ARE SAME
+SELECT * FROM students
+    WHERE NOT country = 'USA'
+
 
 
 -- Select students with "B" Grade in "Computer Science"

@@ -26,4 +26,3 @@ SELECT count(*) from students
 
 
 SELECT SUM(age) from students
-
