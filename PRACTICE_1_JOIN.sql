@@ -86,4 +86,16 @@ INNER JOIN employees USING(department_id)
 GROUP BY department_name
 
 
+-- Find the Department name with the Highest Average Salary
+SELECT department_name, ROUND(AVG(salary)) as salary FROM employees
+INNER JOIN departments USING(department_id) GROUP BY department_name
+ORDER BY salary DESC LIMIT 1
+
+
+
+
+-- Count Employees Hired Each Year
+SELECT EXTRACT('YEAR' FROM hire_date), COUNT(*) FROM employees
+GROUP BY EXTRACT('YEAR' FROM hire_date)
+
 
