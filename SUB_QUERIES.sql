@@ -48,3 +48,5 @@ WHERE salary > (
     SELECT MAX(salary) FROM employees
     WHERE department_name = 'HR'
 );
+
+
