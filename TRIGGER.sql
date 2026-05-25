@@ -41,4 +41,6 @@ EXECUTE FUNCTION audit_records();
 
 SELECT * FROM user_audit;
 
-DELETE FROM "user" WHERE user_id = 1;
+DELETE FROM "user" WHERE user_id = 3;
+
+DROP my_trigger;
