@@ -52,9 +52,11 @@ CREATE TABLE species (
     scientific_name VARCHAR(100),
     discovery_date DATE,
     conservation_status TEXT CHECK (
-        conservation_status IN ('Endangered', 'Vulnerable')
+        conservation_status IN ('Endangered', 'Vulnerable', 'Historic')
     )
 );
+
+
 
 -- inserted data into species table
 INSERT INTO
@@ -278,4 +280,41 @@ SELECT * FROM species
 WHERE NOT EXISTS(
     SELECT * FROM sightings
     WHERE species.species_id = sightings.species_id
+)
+
+
+
+--  6️⃣ Show the most recent 2 sightings.
+SELECT common_name, sighting_time, name FROM sightings
+JOIN rangers ON sightings.ranger_id = rangers.ranger_id
+JOIN species ON sightings.species_id = species.species_id
+ORDER BY sighting_time DESC LIMIT 2
+
+
+
+-- 7️⃣ Update all species discovered before year 1800 to have status 'Historic'.
+UPDATE species SET conservation_status = 'Historic'
+WHERE EXTRACT(YEAR FROM discovery_date) < 1800
+
+
+
+-- 8️⃣ Label each sighting's time of day as 'Morning', 'Afternoon', or 'Evening'.
+SELECT 
+    sighting_id,
+    sighting_time,
+    CASE
+        WHEN EXTRACT(HOUR FROM sighting_time) BETWEEN 5 AND 11 THEN 'Morning'
+        WHEN EXTRACT(HOUR FROM sighting_time) BETWEEN 12 AND 16 THEN 'Afternoon'
+        ELSE 'Evening'
+    END AS time_of_day
+FROM sightings;
+
+
+
+
+-- 9️⃣ Delete rangers who have never sighted any species
+DELETE FROM rangers
+WHERE NOT EXISTS(
+    SELECT 1 FROM sightings
+    WHERE sightings.ranger_id = rangers.ranger_id
 )
